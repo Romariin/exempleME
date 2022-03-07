@@ -1,15 +1,7 @@
 var express = require('express');
 var mongoose = require("mongoose");
 var router = express.Router();
-
-const UserSchema = new mongoose.Schema({
-  name: {type: String, required: true},
-  email: {type: String, required: true},
-  password: {type: String, required: true},
-});
-
-var User = mongoose.model("User", UserSchema, "users");
-
+var User = require("../models/Users");
 
 /* GET users listing. */
 router.get('/add', function(req, res) {
