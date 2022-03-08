@@ -7,12 +7,10 @@ body {
 a {
   color: #00B7FF; }
 
-.container {
-  margin: 3rem 15rem;
-  max-width: 600px !important; }
+.body-container {
+  margin-left: 15rem; }
 
 h1 {
-  font-size: 1.5em;
   font-family: 'Montserrat', sans-serif;
   font-weight: 200 !important; }
 
@@ -32,11 +30,5 @@ h1 {
 
 nav {
   color: white !important; }
-
-.mr-2 {
-  margin-right: 0.5em !important; }
-
-.ml-2 {
-  margin-left: 0.5em !important; }
 
 /*# sourceMappingURL=style.css.map */
