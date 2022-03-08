@@ -56,7 +56,8 @@ async function verifRegister(req, res) {
         let newUser = new User({
             email: email,
             password: hash,
-            pseudo: pseudo
+            pseudo: pseudo,
+            token: ''
         })
         await newUser.save();
         req.flash('success', 'Vous êtes bien inscrit');

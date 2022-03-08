@@ -6,7 +6,6 @@ const authenticateJWT = require('../middleware/authenticateJWT');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log(req.headers.cookie);
   res.render('index', { title: 'Express' });
 });
 
@@ -27,12 +26,15 @@ router.post('/login', function(req, res) {
 });
 
 router.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/login');
+  return res
+      .clearCookie("access_token")
+      .status(200)
+      .json({ message: "Successfully logged out 😏 🍀" });
 })
 
 router.get('/profile', authenticateJWT, function(req, res){
-  res.render('profile', { user: req.user });
+  console.log(req.user);
+  res.render('index', { title: 'Profile' });
 })
 
 

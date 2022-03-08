@@ -12,19 +12,27 @@ async function verifLogin(req, res) {
         })
     }
 
-    let authCheck = await User.find({$or: [{email: auth}, {pseudo: auth}]})
-    if (!authCheck.length) {
+    let user = await User.findOne({$or: [{email: auth}, {pseudo: auth}]})
+    console.log(user)
+    if (!user) {
         res.render('login', {
             error: "Identifiant inexistant où incorrect"
         })
     }
     else {
-        let passwordCheck = bcrypt.compareSync(password, authCheck[0].password)
+        let passwordCheck = bcrypt.compareSync(password, user.password)
         if (passwordCheck) {
-            let token = jwt.sign({pseudo: authCheck[0].pseudo, email: authCheck[0].email,
-            }, process.env.JWT_SECRET, {expiresIn: '1h'})
-            res.cookie('token', token, {maxAge: 3600000, httpOnly: true})
-            res.redirect('/')
+            let token = jwt.sign({
+                user_id: user._id, auth
+            }, process.env.JWT_SECRET, {
+                expiresIn: '1h'
+            })
+            await user.updateOne({token: token})
+            res.cookie('access_token', token, {
+                maxAge: 3600000,
+                httpOnly: true
+            })
+            res.status(200).redirect('/')
         }
         else {
             res.render('login', {
