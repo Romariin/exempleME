@@ -29,7 +29,7 @@ async function verifLogin(req, res) {
             })
             await user.updateOne({token: token})
             res.cookie('access_token', token, {
-                maxAge: 3600000,
+                maxAge: 7200000,
                 httpOnly: true
             })
             res.status(200).redirect('/')
