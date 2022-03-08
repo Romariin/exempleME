@@ -1,34 +1,15 @@
-<!--<div class="ui !bg-[#1C1F21] segment !rounded-none">-->
-<!--    <div class="ui inverted secondary menu">-->
-<!--        <div class="ui item">-->
-<!--            <img class="rounded-full" src="/images/logo.png">-->
-<!--        </div>-->
-<!--        <a class="item">-->
-<!--            Home-->
-<!--        </a>-->
-<!--        <a class="item">-->
-<!--            Messages-->
-<!--        </a>-->
-<!--        <a class="item">-->
-<!--            Friends-->
-<!--        </a>-->
-<!--        <div class="right menu !flex-col !justify-center">-->
-<!--            <div class="ui buttons">-->
-<!--                <a href="/login"><button href="/register" class=" !text-[#00000099] !rounded-r-none ui button">Inscription</button></a>-->
-<!--                <div class="or" data-text="ou"></div>-->
-<!--                <a href="/login"><button class="!text-[#00000099] ui positive button !rounded-l-none">Connexion</button></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
 <div class="ui !bg-[#1C1F21] inverted !text-white left fixed vertical menu">
     <div class="item">
         <img class="ui image" src="/images/logo.png">
     </div>
-    <a class="item">Features</a>
+    <a class="item">Home</a>
     <a class="item">Testimonials</a>
-    <div class="bottom vertical menu">
-        <a class="item">Sign-in</a>
-    </div>
+    <a class="item">Testimonials</a>
+    <% if (user) { %>
+        <a href="/logout" class="menu item !absolute bottom-0 w-[-webkit-fill-available]">Déconnecter</a>
+        <a href="/profile" class="item">Profil</a>
+    <%} else {%>
+        <a href="/login" class="menu item !absolute bottom-0 w-[-webkit-fill-available]">Sign-in</a>
+    <%}%>
+
 </div>

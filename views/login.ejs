@@ -7,39 +7,43 @@
     <script src="semantic/semantic.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-<div class="container">
-    <form method="post">
-        <h1 class="mb-4 mt-4 text-[3rem]">CONNEXION</h1>
-        <% if (messages.success) { %>
-            <div class="ui green message"><%= messages.success %></div>
-        <% }%>
+<%- include('./components/_navbar'); %>
+<div class="body-container">
+    <div class="flex w-full justify-center mt-[3rem]">
+        <form method="post" class="w-[40rem] ml-1 mr-1 max-w-[19em] sm:max-w-sm md:max-w-md xl:md:max-w-xl">
+            <h1 class="mb-4 mt-4 text-[2.5rem] sm:text-[3rem]">CONNEXION</h1>
+            <% if (messages.success) { %>
+                <div class="ui green message"><%= messages.success %></div>
+            <% } %>
 
-        <% if (messages.error) { %>
-            <div class="ui red message"><%= messages.error %></div>
-        <% }%>
+            <% if (messages.error) { %>
+                <div class="ui red message"><%= messages.error %></div>
+            <% } %>
 
-        <% if (error) { %>
-            <div class="ui red message"><%= error %></div>
-        <% }%>
+            <% if (error) { %>
+                <div class="ui red message"><%= error %></div>
+            <% } %>
 
-
-        <div class="ui fluid icon input mb-3">
-            <input type="text" name="auth" class="form-control" placeholder="Email / Pseudonyme" aria-label="Email"
-                   aria-describedby="addon-wrapping">
-            <i class="fas fa-id-badge icon"></i>
-        </div>
-        <div class="ui fluid icon input mb-3">
-            <input type="password" name="password" class="form-control" placeholder="Mot de passe" aria-label="Mot de passe"
-                   aria-describedby="addon-wrapping">
-            <i class="fas fa-lock icon"></i>
-        </div>
-        <div class="buttons">
-        <a href="/register" class="mt-3 mb-3 link">— Inscription</a>
-        </div>
-        <button type="submit" class="ui positive basic button">Se connecter</button>
-    </form>
+            <div class="ui fluid icon input mb-3">
+                <input type="text" name="auth" class="form-control" placeholder="Email / Pseudonyme" aria-label="Email"
+                       aria-describedby="addon-wrapping">
+                <i class="fas fa-id-badge icon"></i>
+            </div>
+            <div class="ui fluid icon input mb-3">
+                <input type="password" name="password" class="form-control" placeholder="Mot de passe"
+                       aria-label="Mot de passe"
+                       aria-describedby="addon-wrapping">
+                <i class="fas fa-lock icon"></i>
+            </div>
+            <div class="buttons">
+                <a href="/register" class="mt-3 mb-3 link">— Inscription</a>
+            </div>
+            <button type="submit" class="ui positive basic button">Se connecter</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>
