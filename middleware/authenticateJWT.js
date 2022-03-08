@@ -4,6 +4,7 @@ const verifyToken = (req, res, next) => {
     const token = req.cookies.access_token;
     if (!token) {
         console.log("No token found");
+        req.flash('error', 'Vous devez être connecté pour accéder à cette page');
         return res.status(403).redirect("/login");
     }
     try {

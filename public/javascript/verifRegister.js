@@ -39,7 +39,7 @@ async function verifRegister(req, res) {
             error: 'Ce pseudo est déjà utilisé',
         })
     }
-    if (password.length <= 6) {
+    if (password.length < 6) {
         return res.render('register', {
             error: 'Le mot de passe doit contenir au moins 6 caractères',
         })
@@ -51,13 +51,11 @@ async function verifRegister(req, res) {
         })
     }
 
-
     else {
         let newUser = new User({
             email: email,
             password: hash,
             pseudo: pseudo,
-            token: ''
         })
         await newUser.save();
         req.flash('success', 'Vous êtes bien inscrit');
