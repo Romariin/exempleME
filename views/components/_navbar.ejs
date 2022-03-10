@@ -2,14 +2,19 @@
     <div class="item">
         <img class="ui image" src="/images/logo.png">
     </div>
-    <a class="item">Home</a>
-    <a class="item">Testimonials</a>
-    <a class="item">Testimonials</a>
+    <a href="/" class="item"> <i class="ui icon home"></i></i>
+        Home</a>
+    <a href="/film" class="item"> <i class="ui icon film"></i></i>
+        Film</a>
     <% if (user) { %>
-        <a href="/logout" class="menu item !absolute bottom-0 w-[-webkit-fill-available]">Déconnecter</a>
-        <a href="/profile" class="item">Profil</a>
-    <%} else {%>
-        <a href="/login" class="menu item !absolute bottom-0 w-[-webkit-fill-available]">Sign-in</a>
-    <%}%>
+        <% if (user.isAdmin) { %>
+            <a href="/admin" class="item"><i class="ui icon chart bar"></i></i>Admin</a>
+        <% } %>
+        <% console.log() %>
+        <a href="/logout" class="menu item !absolute bottom-0 w-[-webkit-fill-available]"><i class="ui icon sign-out"></i>Déconnecter</a>
+        <a href="/profile" class="item"><i class="ui icon user"></i></i>Profil</a>
+    <% } else { %>
+        <a href="/login" class="menu item !absolute bottom-0 w-[-webkit-fill-available]"><i class="ui icon sign-in"></i>Sign-in</a>
+    <% } %>
 
 </div>
