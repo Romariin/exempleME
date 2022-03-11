@@ -1,13 +1,16 @@
 var express = require('express');
 var router = express.Router();
 const {verifRegister, verifLogin, isAdmin, isAuth, needAuth} = require('../middleware/auth');
+const {fetchFilmByName, genFilmCard} = require('../middleware/searchFilm');
 
 /* GET home page. */
 
 router.get('/', isAuth, function (req, res, next) {
-    const test = res.header('authorization');
-    console.log(test)
-    res.render('index', {title: 'Express', user: req.user});
+    res.render('index', {title: 'Express', user: req.user, film: ""});
+});
+
+router.post('/', fetchFilmByName, isAuth, function (req, res, next) {
+    res.render('index', {title: 'Express', user: req.user, film: req.film });
 });
 
 router.get('/register', isAuth, function (req, res, next) {

@@ -1,25 +1,185 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title><%= title %></title>
     <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <script src="semantic/semantic.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  </head>
-  <body>
-    <%- include('./components/_navbar'); %>
-    <div class="ml-60">
-      <% if (messages.success) { %>
-        <div class="ui green message mt-1 mb-1 max-w-xl">
-          <i class="close icon"></i>
-          <%= messages.success %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+<!--TODO: max-height: 28em; sur les images dans les cards, enlever les box-shadow des cards, enlever -->
+
+<%- include('./components/_navbar'); %>
+<div class="!ml-60 !mt-10">
+    <% if (messages.success) { %>
+        <div class="ui green message mt-1 mb-1 max-w-xl"><%= messages.success %></div>
+    <% } %>
+    <form method="post">
+        <div class="ui search flex justify-center mb-10">
+            <div class="ui icon input mr-2">
+                <input class="w-[30rem]" type="text" name="film" placeholder="Titre de film...">
+            </div>
+            <button class="ui icon button !bg-[#fff]">
+                <i class="search icon"></i>
+            </button>
         </div>
-      <% } %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    </div>
-  </body>
+    </form>
+        <div class="ui cards justify-center">
+    <% if (film) { %>
+        <% for(data of film.results) { %>
+        <div class="card !shadow-none">
+                        <div class="image">
+                            <img class="max-h-[27rem]" src=<%=`https://image.tmdb.org/t/p/w500/${data.poster_path}`%>>
+                        </div>
+                        <div class="content">
+                            <div class="header"><%= data.title%></div>
+                            <div class="meta mt-2">
+                                <div class="ui horizontal label">Drame</div>
+                                <div class="ui horizontal label">Horreur</div>
+                                <div class="ui horizontal label">Thriller</div>
+
+                            </div>
+                        </div>
+                        <div class="extra content">
+                  <span class="right floated">
+                    17-03-2005
+                      <i class="calendar icon"></i>
+                  </span>
+                            <a>
+                                <i class="angle double right icon"></i>
+                                Fiche du film
+                            </a>
+                        </div>
+                    </div>
+        <% } %>
+    <% } %>
+        </div>
+<!--        <div class="ui cards justify-center">-->
+    <!--        <div class="card !shadow-none">-->
+    <!--            <div class="image">-->
+    <!--                <img class="max-h-[27rem]" src="https://image.tmdb.org/t/p/w500/dLcQcr9CLD3CKvqAAM5KRolWRco.jpg">-->
+    <!--            </div>-->
+    <!--            <div class="content">-->
+    <!--                <div class="header">&lt;!&ndash;Titre&ndash;&gt;Le Cercle : The Ring 2</div>-->
+    <!--                <div class="meta mt-2">-->
+    <!--                    <div class="ui horizontal label">Drame</div>-->
+    <!--                    <div class="ui horizontal label">Horreur</div>-->
+    <!--                    <div class="ui horizontal label">Thriller</div>-->
+
+    <!--                </div>-->
+    <!--                <div class="description !mt-2 !mb-2">-->
+    <!--                    6 mois après les évènements du premier Ring, Rachel et son fils ont fui Seattle et se sont réfugiés-->
+    <!--                    dans la paisible bourgade d'Astoria. Alors qu'ils pensaient en avoir fini avec les horreurs de-->
+    <!--                    Samara, la cassette vidéo tueuse réapparait.-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="extra content">-->
+    <!--      <span class="right floated">-->
+    <!--        17-03-2005-->
+    <!--          <i class="calendar icon"></i>-->
+    <!--      </span>-->
+    <!--                <a>-->
+    <!--                    <i class="angle double right icon"></i>-->
+    <!--                    Fiche du film-->
+    <!--                </a>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="card">-->
+    <!--            <div class="image">-->
+    <!--                <img class="max-h-[27rem]" src="https://image.tmdb.org/t/p/w500/vsHqZp4jy3sFDxGCPoGnlB2a4Aw.jpg">-->
+    <!--            </div>-->
+    <!--            <div class="content">-->
+    <!--                <div class="header">Molly</div>-->
+    <!--                <div class="meta">-->
+    <!--                    <span class="date">Coworker</span>-->
+    <!--                </div>-->
+    <!--                <div class="description">-->
+    <!--                    Molly is a personal assistant living in Paris.-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="extra content">-->
+    <!--      <span class="right floated">-->
+    <!--        Joined in 2011-->
+    <!--      </span>-->
+    <!--                <span>-->
+    <!--        <i class="user icon"></i>-->
+    <!--        35 Friends-->
+    <!--      </span>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="card">-->
+    <!--            <div class="image">-->
+    <!--                <img class="max-h-[27rem]" src="https://image.tmdb.org/t/p/w500/d06w3BIR2M4YdikMeOHZHlnautc.jpg">-->
+    <!--            </div>-->
+    <!--            <div class="content">-->
+    <!--                <div class="header">Trondheim På Film - Del 1</div>-->
+    <!--                <div class="meta">-->
+    <!--                    <div class="ui horizontal label">Documentaire</div>-->
+    <!--                </div>-->
+    <!--                <div class="description">-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="extra content">-->
+    <!--      <span class="right floated">-->
+    <!--        Joined in 2014-->
+    <!--      </span>-->
+    <!--                <span>-->
+    <!--        <i class="user icon"></i>-->
+    <!--        151 Friends-->
+    <!--      </span>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="card">-->
+    <!--            <div class="image">-->
+    <!--                <img class="max-h-[27rem]" src="https://image.tmdb.org/t/p/w500/d06w3BIR2M4YdikMeOHZHlnautc.jpg">-->
+    <!--            </div>-->
+    <!--            <div class="content">-->
+    <!--                <div class="header">Trondheim På Film - Del 1</div>-->
+    <!--                <div class="meta">-->
+    <!--                    <div class="ui horizontal label">Documentaire</div>-->
+    <!--                </div>-->
+    <!--                <div class="description">-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="extra content">-->
+    <!--      <span class="right floated">-->
+    <!--        Joined in 2014-->
+    <!--      </span>-->
+    <!--                <span>-->
+    <!--        <i class="user icon"></i>-->
+    <!--        151 Friends-->
+    <!--      </span>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="card">-->
+    <!--            <div class="image">-->
+    <!--                <img class="max-h-[27rem]" src="https://image.tmdb.org/t/p/w500/d06w3BIR2M4YdikMeOHZHlnautc.jpg">-->
+    <!--            </div>-->
+    <!--            <div class="content">-->
+    <!--                <div class="header">Trondheim På Film - Del 1</div>-->
+    <!--                <div class="meta">-->
+    <!--                    <div class="ui horizontal label">Documentaire</div>-->
+    <!--                </div>-->
+    <!--                <div class="description">-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="extra content">-->
+    <!--      <span class="right floated">-->
+    <!--        Joined in 2014-->
+    <!--      </span>-->
+    <!--                <span>-->
+    <!--        <i class="user icon"></i>-->
+    <!--        151 Friends-->
+    <!--      </span>-->
+    <!--            </div>-->
+    <!--        </div>-->
+</div>
+</div>
+</body>
 </html>
