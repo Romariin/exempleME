@@ -130,6 +130,7 @@ const isAuth = async (req, res, next) => {
     }
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
+            next();
             return false
         }
         req.user = decoded;
