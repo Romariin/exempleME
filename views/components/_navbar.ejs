@@ -10,9 +10,9 @@
         <% if (user.isAdmin) { %>
             <a href="/admin" class="item"><i class="ui icon chart bar"></i></i>Admin</a>
         <% } %>
-        <% console.log() %>
-        <a href="/logout" class="menu item !absolute bottom-0 w-[-webkit-fill-available]"><i class="ui icon sign-out"></i>Déconnecter</a>
         <a href="/profile" class="item"><i class="ui icon user"></i></i>Profil</a>
+        <a href="/logout" class="menu item !absolute bottom-0 w-[-webkit-fill-available]"><i
+                    class="ui icon sign-out"></i>Déconnecter</a>
     <% } else { %>
         <a href="/login" class="menu item !absolute bottom-0 w-[-webkit-fill-available]"><i class="ui icon sign-in"></i>Sign-in</a>
     <% } %>
