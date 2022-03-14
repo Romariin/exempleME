@@ -1,16 +1,16 @@
 var express = require('express');
 var router = express.Router();
 const {verifRegister, verifLogin, isAdmin, isAuth, needAuth} = require('../middleware/auth');
-const {fetchFilmByName, genFilmCard} = require('../middleware/searchFilm');
+const {fetchFilmByName, fetchNewFilm, getGenre} = require('../middleware/searchFilm');
 
 /* GET home page. */
 
-router.get('/', isAuth, function (req, res, next) {
-    res.render('index', {title: 'Express', user: req.user, film: ""});
+router.get('/', fetchNewFilm, getGenre, isAuth, function (req, res, next) {
+    res.render('index_home', {title: 'Express', user: req.user, newFilm: req.newFilm, genre: req.genre});
 });
 
-router.post('/', fetchFilmByName, isAuth, function (req, res, next) {
-    res.render('index', {title: 'Express', user: req.user, film: req.film });
+router.post('/', fetchFilmByName, getGenre, isAuth, function (req, res, next) {
+    res.render('index', {title: 'Express', user: req.user, film: req.film, genre: req.genre });
 });
 
 router.get('/register', isAuth, function (req, res, next) {
@@ -24,7 +24,6 @@ router.post('/register', verifRegister, function (req, res, next) {
 router.get('/login', isAuth, function (req, res, next) {
     if (req.user) return res.redirect("/")
     res.render('login', {error: '', user: req.user});
-
 });
 
 router.post('/login', verifLogin, function (req, res) {
@@ -41,7 +40,6 @@ router.get('/logout', function (req, res) {
 
 router.get('/profile', needAuth, function (req, res) {
     const test = res.header('x-access-token')
-    console.log(test)
     res.render('index', {title: 'Profile', user: req.user});
 })
 
@@ -49,5 +47,9 @@ router.get('/admin', needAuth, isAdmin, function (req, res) {
     res.render('index', {title: 'Admin', user: req.user});
 })
 
+router.get('/film:id', isAuth, function (req, res) {
+
+    res.render('film', {title: 'Film', user: req.user});
+})
 
 module.exports = router;
