@@ -30,37 +30,60 @@
             </button>
         </div>
     </form>
-        <div class="ui cards justify-center">
-    <% if (film) { %>
-        <% for(data of film.results) { %>
-        <div class="card !shadow-none">
-                        <div class="image">
-                            <img class="max-h-[27rem]" src=<%=`https://image.tmdb.org/t/p/w500/${data.poster_path}`%>>
-                        </div>
-                        <div class="content">
-                            <div class="header"><%= data.title%></div>
-                            <div class="meta mt-2">
-                                <div class="ui horizontal label">Drame</div>
-                                <div class="ui horizontal label">Horreur</div>
-                                <div class="ui horizontal label">Thriller</div>
-
-                            </div>
-                        </div>
-                        <div class="extra content">
-                  <span class="right floated">
-                    17-03-2005
-                      <i class="calendar icon"></i>
-                  </span>
-                            <a>
-                                <i class="angle double right icon"></i>
-                                Fiche du film
-                            </a>
+    <div class="ui cards justify-center">
+        <% if (film) { %>
+            <% for(data of film.results) { %>
+                <% let Vote = data.vote_average * 10; %>
+                <div class="card !shadow-none">
+                    <% if (Vote <= 25) { %>
+                        <a class="ui red ribbon label !absolute !left-[-14px] z-10 !top-[5px]"><%= Vote %>% <i
+                                    class="heart icon"></i></a>
+                    <% } %>
+                    <% if (Vote >= 25 && Vote < 50) { %>
+                        <a class="ui orange ribbon label !absolute !left-[-14px] z-10 !top-[5px]"><%= Vote %>% <i
+                                    class="heart icon"></i></a>
+                    <% } %>
+                    <% if (Vote >= 50) { %>
+                        <a class="ui green ribbon label !absolute !left-[-14px] z-10 !top-[5px]"><%= Vote %>% <i
+                                    class="heart icon"></i></a>
+                    <% } %>
+                    <div class="image">
+                        <img class="max-h-[27rem]"
+                                <% if (data.poster_path) { %>
+                             src=<%= `https://image.tmdb.org/t/p/w500/${data.poster_path}` %> <% } %> src=<%= `/images/nodata-found.png` %>>
+                    </div>
+                    <div class="content">
+                        <div class="header"><%= data.title %></div>
+                        <div class="meta mt-2">
+                            <% if (data.genre_ids) { %>
+                                <% for(genres of data.genre_ids) { %>
+                                    <% for (let i = 0 ; i < genre.genres.length ; i++) { %>
+                                        <% if (genre.genres[i].id === genres) { %>
+                                            <div class="ui horizontal label !mb-1"><%= genre.genres[i].name %></div>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                            <% } %>
                         </div>
                     </div>
+                    <div class="extra content">
+                  <span class="right floated">
+                      <%= data.release_date %>
+                      <i class="calendar icon"></i>
+                  </span>
+                        <a>
+                            <i class="angle double right icon"></i>
+                            Fiche du film
+                        </a>
+                    </div>
+                </div>
+            <% } %>
         <% } %>
-    <% } %>
-        </div>
-<!--        <div class="ui cards justify-center">-->
+        <% if (!film.results.length) { %>
+            <h1 class="text-[2rem] !mt-[2rem]">Aucun film n'a été trouver.</h1>
+        <% } %>
+    </div>
+    <!--        <div class="ui cards justify-center">-->
     <!--        <div class="card !shadow-none">-->
     <!--            <div class="image">-->
     <!--                <img class="max-h-[27rem]" src="https://image.tmdb.org/t/p/w500/dLcQcr9CLD3CKvqAAM5KRolWRco.jpg">-->
