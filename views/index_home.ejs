@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="semantic/semantic.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+<!--TODO: max-height: 28em; sur les images dans les cards, enlever les box-shadow des cards, enlever -->
+
+<%- include('./components/_navbar'); %>
+<div class="!ml-60 !mt-10">
+    <form method="post">
+        <div class="ui search flex justify-center mb-10">
+            <div class="ui icon input mr-2">
+                <input class="w-[30rem]" type="text" name="film" placeholder="Titre de film...">
+            </div>
+            <button class="ui icon button !bg-[#fff]">
+                <i class="search icon"></i>
+            </button>
+        </div>
+    </form>
+    <div class="ui cards justify-center">
+        <% if (newFilm) { console.log() %>
+        <% for(data of newFilm.results) { %>
+            <%
+                let Vote = data.vote_average * 10;
+            %>
+            <div class="card !shadow-none">
+                <% if (Vote < 25) { %>
+                    <a class="ui red ribbon label !absolute !left-[-14px] z-10 !top-[5px]"><%= Vote %>% <i
+                                class="heart icon"></i></a>
+                <% } %>
+                <% if (Vote >= 25 && Vote < 50) { %>
+                    <a class="ui orange ribbon label !absolute !left-[-14px] z-10 !top-[5px]"><%= Vote %>% <i class="heart icon"></i></a>
+                <% } else {%>
+                    <a class="ui green ribbon label !absolute !left-[-14px] z-10 !top-[5px]"><%= Vote %>% <i class="heart icon"></i></a>
+                <% } %>
+                <div class="image">
+                    <img class="max-h-[27rem]"
+                            <% if (data.poster_path) { %>
+                         src=<%= `https://image.tmdb.org/t/p/w500/${data.poster_path}` %> <% } %> src=<%= `/images/nodata-found.png` %>>
+                </div>
+                <div class="content">
+                    <div class="header"><%= data.title %></div>
+                    <div class="meta mt-2">
+                        <% if (data.genre_ids) { %>
+                            <% for(genres of data.genre_ids) { %>
+                                <% for (let i = 0 ; i < genre.genres.length ; i++) { %>
+                                    <% if (genre.genres[i].id === genres) { %>
+                                        <div class="ui horizontal label !mb-1"><%= genre.genres[i].name %></div>
+                                    <% } %>
+                                <% } %>
+                            <% } %>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="extra content">
+                  <span class="right floated">
+                      <%= data.release_date %>
+                      <i class="calendar icon"></i>
+                  </span>
+                    <a>
+                        <i class="angle double right icon"></i>
+                        Fiche du film
+                    </a>
+                </div>
+            </div>
+        <% } %>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>
