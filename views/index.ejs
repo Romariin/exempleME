@@ -71,7 +71,7 @@
                       <%= data.release_date %>
                       <i class="calendar icon"></i>
                   </span>
-                        <a>
+                        <a href=<%=`/film&id=${data.id}`%>>
                             <i class="angle double right icon"></i>
                             Fiche du film
                         </a>
@@ -83,125 +83,6 @@
             <h1 class="text-[2rem] !mt-[2rem]">Aucun film n'a été trouver.</h1>
         <% } %>
     </div>
-    <!--        <div class="ui cards justify-center">-->
-    <!--        <div class="card !shadow-none">-->
-    <!--            <div class="image">-->
-    <!--                <img class="max-h-[27rem]" src="https://image.tmdb.org/t/p/w500/dLcQcr9CLD3CKvqAAM5KRolWRco.jpg">-->
-    <!--            </div>-->
-    <!--            <div class="content">-->
-    <!--                <div class="header">&lt;!&ndash;Titre&ndash;&gt;Le Cercle : The Ring 2</div>-->
-    <!--                <div class="meta mt-2">-->
-    <!--                    <div class="ui horizontal label">Drame</div>-->
-    <!--                    <div class="ui horizontal label">Horreur</div>-->
-    <!--                    <div class="ui horizontal label">Thriller</div>-->
-
-    <!--                </div>-->
-    <!--                <div class="description !mt-2 !mb-2">-->
-    <!--                    6 mois après les évènements du premier Ring, Rachel et son fils ont fui Seattle et se sont réfugiés-->
-    <!--                    dans la paisible bourgade d'Astoria. Alors qu'ils pensaient en avoir fini avec les horreurs de-->
-    <!--                    Samara, la cassette vidéo tueuse réapparait.-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--            <div class="extra content">-->
-    <!--      <span class="right floated">-->
-    <!--        17-03-2005-->
-    <!--          <i class="calendar icon"></i>-->
-    <!--      </span>-->
-    <!--                <a>-->
-    <!--                    <i class="angle double right icon"></i>-->
-    <!--                    Fiche du film-->
-    <!--                </a>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--        <div class="card">-->
-    <!--            <div class="image">-->
-    <!--                <img class="max-h-[27rem]" src="https://image.tmdb.org/t/p/w500/vsHqZp4jy3sFDxGCPoGnlB2a4Aw.jpg">-->
-    <!--            </div>-->
-    <!--            <div class="content">-->
-    <!--                <div class="header">Molly</div>-->
-    <!--                <div class="meta">-->
-    <!--                    <span class="date">Coworker</span>-->
-    <!--                </div>-->
-    <!--                <div class="description">-->
-    <!--                    Molly is a personal assistant living in Paris.-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--            <div class="extra content">-->
-    <!--      <span class="right floated">-->
-    <!--        Joined in 2011-->
-    <!--      </span>-->
-    <!--                <span>-->
-    <!--        <i class="user icon"></i>-->
-    <!--        35 Friends-->
-    <!--      </span>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--        <div class="card">-->
-    <!--            <div class="image">-->
-    <!--                <img class="max-h-[27rem]" src="https://image.tmdb.org/t/p/w500/d06w3BIR2M4YdikMeOHZHlnautc.jpg">-->
-    <!--            </div>-->
-    <!--            <div class="content">-->
-    <!--                <div class="header">Trondheim På Film - Del 1</div>-->
-    <!--                <div class="meta">-->
-    <!--                    <div class="ui horizontal label">Documentaire</div>-->
-    <!--                </div>-->
-    <!--                <div class="description">-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--            <div class="extra content">-->
-    <!--      <span class="right floated">-->
-    <!--        Joined in 2014-->
-    <!--      </span>-->
-    <!--                <span>-->
-    <!--        <i class="user icon"></i>-->
-    <!--        151 Friends-->
-    <!--      </span>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--        <div class="card">-->
-    <!--            <div class="image">-->
-    <!--                <img class="max-h-[27rem]" src="https://image.tmdb.org/t/p/w500/d06w3BIR2M4YdikMeOHZHlnautc.jpg">-->
-    <!--            </div>-->
-    <!--            <div class="content">-->
-    <!--                <div class="header">Trondheim På Film - Del 1</div>-->
-    <!--                <div class="meta">-->
-    <!--                    <div class="ui horizontal label">Documentaire</div>-->
-    <!--                </div>-->
-    <!--                <div class="description">-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--            <div class="extra content">-->
-    <!--      <span class="right floated">-->
-    <!--        Joined in 2014-->
-    <!--      </span>-->
-    <!--                <span>-->
-    <!--        <i class="user icon"></i>-->
-    <!--        151 Friends-->
-    <!--      </span>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--        <div class="card">-->
-    <!--            <div class="image">-->
-    <!--                <img class="max-h-[27rem]" src="https://image.tmdb.org/t/p/w500/d06w3BIR2M4YdikMeOHZHlnautc.jpg">-->
-    <!--            </div>-->
-    <!--            <div class="content">-->
-    <!--                <div class="header">Trondheim På Film - Del 1</div>-->
-    <!--                <div class="meta">-->
-    <!--                    <div class="ui horizontal label">Documentaire</div>-->
-    <!--                </div>-->
-    <!--                <div class="description">-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--            <div class="extra content">-->
-    <!--      <span class="right floated">-->
-    <!--        Joined in 2014-->
-    <!--      </span>-->
-    <!--                <span>-->
-    <!--        <i class="user icon"></i>-->
-    <!--        151 Friends-->
-    <!--      </span>-->
-    <!--            </div>-->
-    <!--        </div>-->
 </div>
 </div>
 </body>

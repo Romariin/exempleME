@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const {verifRegister, verifLogin, isAdmin, isAuth, needAuth} = require('../middleware/auth');
-const {fetchFilmByName, fetchNewFilm, getGenre} = require('../middleware/searchFilm');
+const {fetchFilmByName, fetchNewFilm, getGenre, fetchFilmById} = require('../middleware/searchFilm');
 
 /* GET home page. */
 
@@ -47,9 +47,8 @@ router.get('/admin', needAuth, isAdmin, function (req, res) {
     res.render('index', {title: 'Admin', user: req.user});
 })
 
-router.get('/film:id', isAuth, function (req, res) {
-
-    res.render('film', {title: 'Film', user: req.user});
+router.get('/film&id=:id', fetchFilmById, isAuth, function (req, res) {
+    res.render('film', {title: 'Film', user: req.user, id: req.params.id, film: req.filmById, credit: req.filmByIdCredit});
 })
 
 module.exports = router;
